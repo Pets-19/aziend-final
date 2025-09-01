@@ -1,0 +1,9 @@
+please don't do anything unless i will ask you to do
+please share a perfect prompt to implement the mobile navbar perfectly for this project, please just share only the prompt, not do anything
+
+
+
+*********************
+please analyze all the files so that i can ask you to modify or improve the project
+it is showing in mobile that the mobile navbar is not yet implemented, please check that, please don't do anything unless i will ask you to do
+please share a perfect prompt to implement this  mobile navbar perfectly for this project, please just share only the prompt, not do anything
