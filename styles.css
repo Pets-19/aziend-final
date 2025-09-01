@@ -436,6 +436,64 @@ input[type="range"]::-moz-range-thumb {
     transform: translateX(0);
 }
 
+/* Mobile menu styles */
+.mobile-menu {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--background);
+    z-index: 100;
+    padding: 2rem;
+    transform: translateX(100%);
+    transition: transform 0.3s ease;
+}
+
+.mobile-menu.show {
+    transform: translateX(0);
+}
+
+/* Mobile menu overlay */
+#mobile-menu-overlay {
+    backdrop-filter: blur(4px);
+}
+
+/* Mobile menu animations */
+#mobile-menu {
+    box-shadow: -4px 0 24px rgba(0, 0, 0, 0.15);
+}
+
+/* Touch-friendly button sizes for mobile */
+@media (max-width: 1024px) {
+    .mobile-menu-link {
+        min-height: 44px;
+        display: flex;
+        align-items: center;
+    }
+
+    #mobile-services-toggle {
+        min-height: 44px;
+    }
+
+    #mobile-menu-close {
+        min-height: 44px;
+        min-width: 44px;
+    }
+}
+
+/* Smooth icon transitions */
+#mobile-services-icon {
+    transition: transform 0.2s ease;
+}
+
+/* Prevent scroll when mobile menu is open */
+body.mobile-menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
+}
+
 /* Loading states */
 .loading {
     opacity: 0.6;

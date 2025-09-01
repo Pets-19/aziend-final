@@ -224,8 +224,19 @@ function initializeNavigation() {
     const servicesDropdown = document.getElementById("services-dropdown");
     const servicesMenu = document.getElementById("services-menu");
     const mobileMenuToggle = document.getElementById("mobile-menu-toggle");
+    const mobileMenuOverlay = document.getElementById("mobile-menu-overlay");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const mobileMenuClose = document.getElementById("mobile-menu-close");
+    const mobileServicesToggle = document.getElementById(
+        "mobile-services-toggle"
+    );
+    const mobileServicesSubmenu = document.getElementById(
+        "mobile-services-submenu"
+    );
+    const mobileServicesIcon = document.getElementById("mobile-services-icon");
+    const mobileMenuLinks = document.querySelectorAll(".mobile-menu-link");
 
-    // Services dropdown
+    // Services dropdown (Desktop)
     if (servicesDropdown && servicesMenu) {
         servicesDropdown.addEventListener("click", function (e) {
             e.stopPropagation();
@@ -239,15 +250,118 @@ function initializeNavigation() {
     }
 
     // Mobile menu toggle
-    if (mobileMenuToggle) {
+    if (mobileMenuToggle && mobileMenuOverlay && mobileMenu) {
         mobileMenuToggle.addEventListener("click", function () {
-            // For now, just show an alert - you can implement full mobile menu later
-            alert("Mobile menu functionality - to be implemented");
+            openMobileMenu();
+        });
+
+        // Close mobile menu when clicking close button
+        if (mobileMenuClose) {
+            mobileMenuClose.addEventListener("click", function () {
+                closeMobileMenu();
+            });
+        }
+
+        // Close mobile menu when clicking overlay
+        mobileMenuOverlay.addEventListener("click", function (e) {
+            if (e.target === mobileMenuOverlay) {
+                closeMobileMenu();
+            }
+        });
+
+        // Prevent menu from closing when clicking inside menu
+        mobileMenu.addEventListener("click", function (e) {
+            e.stopPropagation();
         });
     }
 
+    // Mobile services submenu toggle
+    if (mobileServicesToggle && mobileServicesSubmenu && mobileServicesIcon) {
+        mobileServicesToggle.addEventListener("click", function () {
+            const isHidden = mobileServicesSubmenu.classList.contains("hidden");
+
+            if (isHidden) {
+                mobileServicesSubmenu.classList.remove("hidden");
+                mobileServicesIcon.style.transform = "rotate(180deg)";
+            } else {
+                mobileServicesSubmenu.classList.add("hidden");
+                mobileServicesIcon.style.transform = "rotate(0deg)";
+            }
+        });
+    }
+
+    // Close mobile menu when clicking on any menu link
+    mobileMenuLinks.forEach((link) => {
+        link.addEventListener("click", function () {
+            closeMobileMenu();
+        });
+    });
+
+    // Handle escape key to close mobile menu
+    document.addEventListener("keydown", function (e) {
+        if (
+            e.key === "Escape" &&
+            mobileMenuOverlay &&
+            !mobileMenuOverlay.classList.contains("invisible")
+        ) {
+            closeMobileMenu();
+        }
+    });
+
     // Populate services dropdown
     populateServicesDropdown();
+}
+
+// Function to open mobile menu
+function openMobileMenu() {
+    const mobileMenuOverlay = document.getElementById("mobile-menu-overlay");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    if (mobileMenuOverlay && mobileMenu) {
+        // Prevent body scrolling
+        document.body.style.overflow = "hidden";
+
+        // Show overlay
+        mobileMenuOverlay.classList.remove("invisible", "opacity-0");
+        mobileMenuOverlay.classList.add("visible", "opacity-100");
+
+        // Slide in menu
+        setTimeout(() => {
+            mobileMenu.classList.remove("translate-x-full");
+            mobileMenu.classList.add("translate-x-0");
+        }, 10);
+    }
+}
+
+// Function to close mobile menu
+function closeMobileMenu() {
+    const mobileMenuOverlay = document.getElementById("mobile-menu-overlay");
+    const mobileMenu = document.getElementById("mobile-menu");
+    const mobileServicesSubmenu = document.getElementById(
+        "mobile-services-submenu"
+    );
+    const mobileServicesIcon = document.getElementById("mobile-services-icon");
+
+    if (mobileMenuOverlay && mobileMenu) {
+        // Slide out menu
+        mobileMenu.classList.remove("translate-x-0");
+        mobileMenu.classList.add("translate-x-full");
+
+        // Hide overlay after animation
+        setTimeout(() => {
+            mobileMenuOverlay.classList.remove("visible", "opacity-100");
+            mobileMenuOverlay.classList.add("invisible", "opacity-0");
+
+            // Restore body scrolling
+            document.body.style.overflow = "";
+
+            // Reset services submenu state
+            if (mobileServicesSubmenu && mobileServicesIcon) {
+                mobileServicesSubmenu.classList.add("hidden");
+                mobileServicesIcon.style.transform = "rotate(0deg)";
+            }
+        }, 300);
+    }
 }
 
 function populateServicesDropdown() {
