@@ -24,7 +24,6 @@ function initializeApp() {
     initializeServices();
     initializeCostCalculator();
     initializeRegulationUpdates();
-    // Consent banner will be initialized after header loads
     initializeContactForm();
     initializeSmoothScrolling();
     initializeAnimations();
@@ -46,7 +45,6 @@ function loadHeaderComponent() {
                 }
                 // Re-initialize navigation after header is loaded
                 initializeNavigation();
-                initializeConsentBanner();
             })
             .catch((error) => {
                 console.error("Error loading header component:", error);
@@ -3485,27 +3483,6 @@ function showUpdateDetails(updateId) {
 function isValidEmail(email) {
     const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     return emailRegex.test(email);
-}
-
-// Consent banner
-function initializeConsentBanner() {
-    const consentBanner = document.getElementById("consent-banner");
-    const acceptButton = consentBanner?.querySelector("button");
-
-    // Check if consent was already given
-    if (localStorage.getItem("consent-accepted") === "true") {
-        consentBanner?.remove();
-        return;
-    }
-
-    // Accept button click handler
-    if (acceptButton) {
-        acceptButton.addEventListener("click", function () {
-            localStorage.setItem("consent-accepted", "true");
-            consentBanner.style.transform = "translateY(-100%)";
-            setTimeout(() => consentBanner?.remove(), 300);
-        });
-    }
 }
 
 // Contact form

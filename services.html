@@ -95,20 +95,6 @@
     </head>
 
     <body class="min-h-screen bg-gray-50">
-        <!-- Cookie Banner -->
-        <div
-            id="cookie-banner"
-            class="fixed top-0 left-0 right-0 bg-custom-600 text-white p-3 text-center z-50 text-sm"
-        >
-            We use cookies to enhance your experience. By continuing, you
-            consent to our use of cookies.
-            <button
-                class="ml-4 px-3 py-1 bg-white text-custom-600 rounded text-xs hover:bg-gray-100 transition-colors"
-            >
-                Accept
-            </button>
-        </div>
-
         <!-- Header Container -->
         <div id="header-container">
             <!-- Header content will be loaded from header.html -->
@@ -154,7 +140,7 @@
                         >
                             <a
                                 href="contact.html"
-                                class="bg-custom-600 text-gray-900 px-8 py-4 rounded-lg hover:bg-custom-700 transition-colors font-bold text-lg shadow-lg"
+                                class="bg-button-primary text-white px-8 py-4 rounded-lg hover:bg-button-primary-hover transition-colors font-bold text-lg shadow-lg"
                             >
                                 Get Free Consultation
                             </a>
@@ -732,7 +718,7 @@
                     >
                         <a
                             href="contact.html"
-                            class="bg-custom-600 text-gray-900 px-8 py-4 rounded-lg hover:bg-custom-700 transition-colors font-bold text-lg"
+                            class="bg-button-primary text-white px-8 py-4 rounded-lg hover:bg-button-primary-hover transition-colors font-bold text-lg"
                         >
                             Start Your Business Today
                         </a>
@@ -1069,14 +1055,6 @@
                     menu.classList.add("invisible");
                 }
             });
-
-            // Cookie banner functionality
-            document
-                .querySelector("#cookie-banner button")
-                .addEventListener("click", function () {
-                    document.getElementById("cookie-banner").style.display =
-                        "none";
-                });
 
             // Initialize Lucide icons
             lucide.createIcons();

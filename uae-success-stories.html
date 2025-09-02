@@ -93,20 +93,6 @@
     </head>
 
     <body class="min-h-screen bg-gray-50">
-        <!-- Cookie Banner -->
-        <div
-            id="cookie-banner"
-            class="fixed top-0 left-0 right-0 bg-custom-600 text-white p-3 text-center z-50 text-sm"
-        >
-            We use cookies to enhance your experience. By continuing, you
-            consent to our use of cookies.
-            <button
-                class="ml-4 px-3 py-1 bg-white text-custom-600 rounded text-xs hover:bg-gray-100 transition-colors"
-            >
-                Accept
-            </button>
-        </div>
-
         <!-- Header Container -->
         <div id="header-container">
             <!-- Header content will be loaded from header.html -->
@@ -137,7 +123,7 @@
                         >
                             <a
                                 href="contact.html"
-                                class="inline-flex items-center px-8 py-4 bg-custom-600 text-white font-semibold rounded-lg hover:bg-custom-700 transition-colors"
+                                class="inline-flex items-center px-8 py-4 bg-button-primary text-white font-semibold rounded-lg hover:bg-button-primary-hover transition-colors"
                             >
                                 <i
                                     data-lucide="rocket"
@@ -1415,20 +1401,6 @@
                             }
                         });
                     });
-                });
-
-                // Cookie banner functionality
-                const cookieBanner = document.getElementById("cookie-banner");
-                const acceptButton = cookieBanner.querySelector("button");
-
-                // Check if cookies were already accepted
-                if (localStorage.getItem("cookiesAccepted") === "true") {
-                    cookieBanner.style.display = "none";
-                }
-
-                acceptButton.addEventListener("click", function () {
-                    localStorage.setItem("cookiesAccepted", "true");
-                    cookieBanner.style.display = "none";
                 });
 
                 // Mobile menu toggle
