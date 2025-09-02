@@ -12,6 +12,10 @@
     color: #252e48;
 }
 
+.bg-test {
+    background-color: #f0eee6;
+}
+
 /* Button color for #0D2641 */
 .bg-button-primary {
     background-color: #0d2641;
